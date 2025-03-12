@@ -1,0 +1,61 @@
+{
+    "name": "monad-fruit-match",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "buffer": "^6.0.3",
+        "lucide-react": "^0.129.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-scripts": "^5.0.1",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+        "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "deploy:contracts": "hardhat run scripts/deploy.js --network mumbai",
+        "verify:contracts": "hardhat verify --network mumbai",
+        "seed:data": "hardhat run scripts/seed.js --network mumbai"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
+        "@nomicfoundation/hardhat-ethers": "^3.0.0",
+        "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+        "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+        "@nomicfoundation/hardhat-verify": "^1.0.0",
+        "@typechain/ethers-v6": "^0.4.0",
+        "@typechain/hardhat": "^8.0.0",
+        "autoprefixer": "^10.4.14",
+        "chai": "^4.3.7",
+        "dotenv": "^16.4.7",
+        "hardhat": "^2.22.19",
+        "hardhat-gas-reporter": "^1.0.9",
+        "postcss": "^8.4.27",
+        "solidity-coverage": "^0.8.4",
+        "tailwindcss": "^3.3.3",
+        "typechain": "^8.3.0"
+    }
+}

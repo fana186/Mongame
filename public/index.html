@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monad Fruit Match</title>
+  <!-- Add React and ReactDOM directly from CDN for quick testing -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- Basic styling -->
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+    }
+    #root {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <!-- Your game component script -->
+  <script type="text/babel">
+    // Mock contexts and hooks to prevent errors
+    const GameContext = React.createContext();
+    const WalletContext = React.createContext();
+    
+    // Simple mock providers
+    const GameProvider = ({ children }) => {
+      const [gameState, setGameState] = React.useState({
+        playerLevel: 5,
+        playerPoints: 100,
+        highScores: {1: 500, 2: 450},
+        currentLevel: 1,
+        levelConfig: {
+          targetScore: 500,
+          maxMoves: 15,
+          description: "Match 3 or more fruits"
+        },
+        gameBoard: Array(8).fill().map(() => Array(8).fill().map(() => ({
+          type: Math.floor(Math.random() * 6) + 1,
+          isObstacle: Math.random() > 0.9
+        }))),
+        selectedTiles: [],
+        score: 250,
+        moves: 10,
+        stars: 2,
+        isLevelPassed: false,
+        isGameActive: true,
+        isLoading: false,
+        transactionPending: false,
+        gameError: null,
+        matchPosition: null,
+        splashEffect: null
+      });
+      
+      const gameContextValue = {
+        ...gameState,
+        setSplashEffect: () => {},
+        restartLevel: () => console.log("Restart level"),
+        moveToNextLevel: () => console.log("Move to next level"),
+        selectLevel: (level) => console.log("Select level", level),
+        handleDragStart: () => console.log("Drag start"),
+        handleDragOver: () => console.log("Drag over"),
+        handleDragEnd: () => console.log("Drag end"),
+        shuffleBoard: () => console.log("Shuffle board"),
+        getHint: () => console.log("Get hint"),
+        purchasePowerUp: () => console.log("Purchase power up"),
+        clearError: () => console.log("Clear error")
+      };
+      
+      return (
+        <GameContext.Provider value={gameContextValue}>
+          {children}
+        </GameContext.Provider>
+      );
+    };
+    
+    const WalletProvider = ({ children }) => {
+      const [walletState, setWalletState] = React.useState({
+        isConnected: false,
+        account: "0x1234567890abcdef",
+        error: null
+      });
+      
+      const walletContextValue = {
+        ...walletState,
+        connectWallet: () => {
+          setWalletState({
+            ...walletState,
+            isConnected: true
+          });
+          console.log("Connect wallet");
+        }
+      };
+      
+      return (
+        <WalletContext.Provider value={walletContextValue}>
+          {children}
+        </WalletContext.Provider>
+      );
+    };
+    
+    // Mock hooks
+    const useGame = () => React.useContext(GameContext);
+    const useWallet = () => React.useContext(WalletContext);
+    const useSoundEffects = () => ({
+      playSound: () => {},
+      playBackgroundMusic: () => {}
+    });
+    const useHapticFeedback = () => ({
+      vibrateMatch: () => {},
+      vibrateInvalidMove: () => {},
+      vibrateLevelComplete: () => {},
+      vibrateStarEarned: () => {},
+      vibrateHint: () => {},
+      vibrateShuffle: () => {},
+      vibrateButtonClick: () => {},
+      vibrateSelect: () => {}
+    });
+    
+    // Mock components
+    const FallingLeaves = () => <div>Falling Leaves Effect</div>;
+    const MatchParticles = () => <div>Match Particles Effect</div>;
+    const JuiceSplash = () => <div>Juice Splash Effect</div>;
+    const LevelSelector = () => <div>Level Selector</div>;
+    const GameControls = () => <div>Game Controls</div>;
+    const VictoryScreen = () => <div>Victory Screen</div>;
+    const WalletConnect = ({ onConnect }) => (
+      <div className="p-4 bg-brown-600 rounded-lg text-center">
+        <h2>Connect your Monad wallet</h2>
+        <p>Connect your wallet to start playing!</p>
+        <button onClick={onConnect} style={{padding: "10px 20px", background: "#8B4513", color: "white", border: "none", borderRadius: "4px"}}>
+          Connect Wallet
+        </button>
+      </div>
+    );
+    const StarRating = () => <div>⭐⭐⭐</div>;
+    const ScoreDisplay = () => <div>Score Display</div>;
+    const WoodenButton = ({ label, onClick, disabled }) => (
+      <button 
+        onClick={onClick} 
+        disabled={disabled}
+        style={{
+          padding: "8px 16px",
+          margin: "4px",
+          background: "#8B4513",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          opacity: disabled ? 0.5 : 1
+        }}
+      >
+        {label}
+      </button>
+    );
+    
+    // Import your FruitMatchGame component
+    // This is where you would paste your entire FruitMatchGame code from the paste.txt
+    const FruitMatchGame = () => {
+      // Paste your entire FruitMatchGame component here
+      // For now, showing a placeholder:
+      return (
+        <div style={{textAlign: "center", padding: "20px"}}>
+          <h1>Monad Fruit Match</h1>
+          <div style={{margin: "20px 0"}}>
+            <WoodenButton label="Connect Wallet" onClick={() => {}} />
+          </div>
+          <div>Game board would appear here</div>
+        </div>
+      );
+    };
+    
+    // Render the App
+    const App = () => (
+      <WalletProvider>
+        <GameProvider>
+          <FruitMatchGame />
+        </GameProvider>
+      </WalletProvider>
+    );
+    
+    // Mount the App to the DOM
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

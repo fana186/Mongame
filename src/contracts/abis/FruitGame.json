@@ -1,0 +1,362 @@
+{
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_tokenAddress",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "player",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "levelId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "score",
+            "type": "uint256"
+          }
+        ],
+        "name": "LevelCompleted",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "player",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "levelId",
+            "type": "uint256"
+          }
+        ],
+        "name": "LevelStarted",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "OwnershipTransferred",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "player",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "RewardDistributed",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_levelId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_score",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_stars",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_moves",
+            "type": "uint256"
+          }
+        ],
+        "name": "completeLevel",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_levelId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_targetScore",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_moveLimit",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_baseReward",
+            "type": "uint256"
+          }
+        ],
+        "name": "createLevel",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_player",
+            "type": "address"
+          }
+        ],
+        "name": "getPlayerLevel",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_player",
+            "type": "address"
+          }
+        ],
+        "name": "getPlayerProgress",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "highestLevel",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalScore",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "totalStars",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct FruitGame.PlayerProgress",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_player",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_levelId",
+            "type": "uint256"
+          }
+        ],
+        "name": "getPlayerScoreForLevel",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_player",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_levelId",
+            "type": "uint256"
+          }
+        ],
+        "name": "getPlayerStarsForLevel",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "renounceOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_levelId",
+            "type": "uint256"
+          }
+        ],
+        "name": "startLevel",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "tokenAddress",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+          }
+        ],
+        "name": "transferOwnership",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "_levelId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_targetScore",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_moveLimit",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "_baseReward",
+            "type": "uint256"
+          }
+        ],
+        "name": "updateLevel",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "_newTokenAddress",
+            "type": "address"
+          }
+        ],
+        "name": "updateTokenAddress",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ]
+  }
